@@ -1,0 +1,11 @@
+CREATE TRIGGER tri_class 
+【    】 INSERT ON 【    】
+FOR EACH ROW 
+【    】
+    IF EXISTS (【    】 1 FROM t_teacher WHERE id = NEW.t_id) THEN
+        UPDATE t_teacher SET is_head = 1 WHERE 【    】;
+    ELSE
+        【    】t_teacher (id, name, sex, age, is_head, tel)
+        VALUES (NEW.t_id, NEW.t_name, NULL, NULL, 1, NULL);
+    【    】;
+END

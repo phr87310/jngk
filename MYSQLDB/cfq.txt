@@ -1,0 +1,30 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_updateTeacherAge`(  
+    IN t_id INT UNSIGNED,  
+    IN t_age INT,  
+    OUT out_msg VARCHAR(20)  
+)
+BEGIN  
+    -- 声明变量  
+    DECLARE teacher_exists INT DEFAULT 0;  
+  
+    -- 检查教师编号是否存在  
+    SELECT COUNT(*) 【    】 teacher_exists  
+    FROM t_teacher  
+    WHERE id = t_id;  
+  
+    IF teacher_exists > 0 THEN  
+        -- 检查年龄是否在18到66之间  
+        IF t_age BETWEEN 18 【    】 66 THEN  
+            -- 更新年龄  
+            UPDATE t_teacher  
+            SET age = t_age  
+            WHERE id = t_id;  
+            SET out_msg = 'ok';  
+        ELSE  
+            SET out_msg = '【    】';  
+        END IF;  
+    ELSE  
+        -- 教师编号不存在  
+        SET out_msg = 'notexist';  
+    END IF;  
+END
